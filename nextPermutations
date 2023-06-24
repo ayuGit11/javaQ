@@ -1,3 +1,4 @@
+//reverse function to reverse an array
 public static int[] reverse(int left,int right,int nums[]){
        while (left < right) {
             int temp = nums[left];
@@ -6,26 +7,31 @@ public static int[] reverse(int left,int right,int nums[]){
         }
         return nums;
     }
+//finding next possible permutation 
     public void nextPermutation(int[] nums) {
         int n=nums.length;
         int idx=-1;
+      //last element of an array start krege aur dekehege ki mere se pehle koi element chhota aaya h kya agr mil jaega toh loop se bahar nikal jaege
         for(int i=n-1;i>0;i--){
             if(nums[i]>nums[i-1]){
                 idx=i;
                 break;
             }
         }
+        //idx is the index position where its previous(idx-1) pe chhota element hai
+        //idx==-1 ka mtlb element already sorted in descending order
         if(idx==-1){
             reverse(0,n-1,nums);
             return;
         }
         else{
           int prev=idx;
-          for(int i=idx+1;i<n;i++){
+          for(int i=idx+1;i<n;i++){ // yha se dekhege ki idx se bhi bada nearest element milega kya agr milega toh ush nearest ko prev me store krwa lege
               if(nums[i]>nums[idx-1] && nums[i]<=nums[prev]){
                   prev=i;
               }
           }
+          // prev element se swap krege aur phir usko reverse kr dege
           int temp=nums[idx-1];
           nums[idx-1]=nums[prev];
           nums[prev]=temp;
