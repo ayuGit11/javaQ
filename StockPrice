@@ -1,0 +1,16 @@
+//prices array is given and we have to find the maximum profit we gain in a stock 
+//so our approach is to buy stock when the prices is low and sell it if the prices[i] isn greater than buying price to gain the profit.
+public int maxProfit(int[] prices) {
+        int bp=Integer.MAX_VALUE;
+        int maxp=0;
+        for(int i=0;i<prices.length;i++){
+            if(prices[i]>bp){
+                int profit=prices[i]-bp;
+                maxp=Math.max(profit,maxp);
+            }
+            else{
+                bp=prices[i];
+            }
+        }
+        return maxp;
+    }
