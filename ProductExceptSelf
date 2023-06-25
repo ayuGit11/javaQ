@@ -1,4 +1,6 @@
 //Here we find product of nums[i] but it is the product of all number except itself.
+//here I made two helper array left[] store product of elements of its left and right[] store product of elements of its right and then finally multiply each element of left[i] 
+//and right[i] to get the value of ans[i].
 public int[] productExceptSelf(int[] nums) {
         int n=nums.length;
         int ans[]=new int[n];
