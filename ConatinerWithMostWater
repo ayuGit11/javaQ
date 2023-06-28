@@ -1,0 +1,22 @@
+//here we have to find the maximum water to be stored in a container so find here the big container by using 2 pointer approach.
+//It is not like maximum rain water trapped because in rain water trapped our aim is to find maximun collection of water .In simple word we can say that in trapped rain water we 
+//are allowed to have as many container as we want to store water but in this case we find the bigger container.
+public int maxArea(int[] height) {
+        int n=height.length;
+        int lefth=0;
+        int righth=n-1;
+        int maxW=0;
+        while(lefth<righth){
+           int h=Math.min(height[lefth],height[righth]);
+           int width=Math.abs(righth-lefth);
+           int currW=h*width;
+           maxW=Math.max(currW,maxW);
+           if(height[lefth]<height[righth]){
+             lefth++;
+           }
+           else{
+             righth--;
+           }
+        }
+        return maxW;
+    }
