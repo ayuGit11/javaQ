@@ -1,0 +1,31 @@
+//here we find overlapping intervals and then merge it firstly I sort the given intervals in ascending order and then put elements in stack.
+public int[][] overlappedInterval(int[][] Intervals)
+    {
+        // Code here // Code here
+        Arrays.sort(Intervals,(a,b)->a[0]-b[0]);
+        int arr[]=new int[2];
+        Stack<int []> st = new Stack<>();
+        st.push(Intervals[0]);
+        for(int i=1;i<Intervals.length;i++){
+            int temp[]=st.peek();
+            //not overlapping
+            if(temp[1]<Intervals[i][0]){
+                st.push(Intervals[i]);
+            }
+            else if(temp[1]<Intervals[i][1]){
+                temp[1]=Intervals[i][1];
+                st.pop();
+                st.push(temp);
+            }
+        }
+        int ans[][]=new int[st.size()][2];
+        int j=0;
+        while(!st.isEmpty()){
+            int temp[]=st.pop();
+            ans[j][0]=temp[0];
+            ans[j][1]=temp[1];
+            j++;
+        }
+         Arrays.sort(ans,(a,b)->a[0]-b[0]);
+         return ans;  
+    }
