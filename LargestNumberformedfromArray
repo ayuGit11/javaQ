@@ -1,0 +1,11 @@
+//Here we have to arrange them in such a manner that they form the largest number possible.so that we have to sort it. we sort string after append it either ab or ba the compare 
+//which one is greater and sort them in descenting order.for that I use comparator in sort function and for comparing string compareTo function is used.
+String printLargest(String[] arr) {
+        // code here
+        String ans="";
+        Arrays.sort(arr,(a,b)->((b+a).compareTo(a+b)));//sort in descending order
+        for(int i=0;i<arr.length;i++){
+            ans+=arr[i];
+        }
+        return ans;
+    }
