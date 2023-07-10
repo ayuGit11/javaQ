@@ -1,0 +1,20 @@
+//Here for calculating maximum length of same character substring I use hashMap which is used for keep tracking of number of times that character is occuring .
+//in max variable keep tracking the maximum of occurence of character and then checking condition (j-i+1-max is greater k) if it is true then we have to move i pointer from 0 
+//to further.and then atlast we calculate the ans my taking its max of ans and j-i+1 and moving to next character.
+public int characterReplacement(String s, int k) {
+        int i=0,j=0,max=0,ans=0;
+        HashMap<Character,Integer> map=new HashMap<>();
+        while(j<s.length()){
+            char ch=s.charAt(j);
+            map.put(ch,map.getOrDefault(ch,0)+1);
+            max=Math.max(max,map.get(ch));
+            if(j-i+1-max>k){
+                char ch1=s.charAt(i); 
+                map.put(ch1,map.get(ch1)-1); 
+                i++;
+            }
+            ans=Math.max(ans,j-i+1);
+            j++;
+        }
+        return ans;
+    }
