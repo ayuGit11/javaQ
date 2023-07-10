@@ -1,0 +1,19 @@
+//finding length Of Longest Substring without repeating character for that here I take one boolean character array of size 256 to keep track the frequency of each character.
+
+public int lengthOfLongestSubstring(String s) {
+        int maxc=0;
+        for(int i=0;i<s.length();i++){
+             boolean freq[]=new boolean[256];
+             for(int j=i;j<s.length();j++){ 
+                if(freq[s.charAt(j)]==true){
+                 break;
+                }
+                else{
+                  maxc=Math.max(j-i+1,maxc);
+                  freq[s.charAt(j)]=true;
+                }
+              }
+              freq[s.charAt(i)]=false;
+        }
+        return maxc;
+    }
