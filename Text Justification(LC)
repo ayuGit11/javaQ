@@ -1,0 +1,59 @@
+//Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
+Output:
+[
+   "This    is    an",
+   "example  of text",
+   "justification.  "
+]
+//approch: pehle maximum ek line me jisko baitha skte h uska index j ke help se trace krenge.phir dekhege kitna space hai aur kaise usko evenly distribute krna h.
+class Solution {
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        ArrayList<String> ans = new ArrayList<>();
+        int n=words.length;
+        int i=0;
+        while(i<n){//pura words ko traverse
+            int len=words[i].length();//ith index waale string ka length
+            int j=i+1;//words array
+            while(j<n && len+words[j].length()+(j-i)<=maxWidth){
+                len+=words[j].length();//number of characters
+                j++;
+            }
+           // System.out.println();
+            int nw=j-i;//number of words
+            int es=maxWidth-len;//total space 
+            String line="";
+            //last line or number of word is one only
+            if(nw==1 || j==n){
+                line+=words[i];
+                for(int k=i+1;k<j;k++){
+                    line+=" "+words[k];
+                }
+                int currlen=line.length();
+                while(currlen!=maxWidth){//line lo maxWidhth bnane ke liye space add kr dege
+                    line+=" ";
+                    currlen++;
+                }
+            }
+            else{
+                int sbw=es/(nw-1);//kitna space bich me hoga
+                int exs=es%(nw-1);//evenly baatne ke baad
+                line+=words[i];
+                for(int k=i+1;k<j;k++){
+                    int s=sbw;
+                    while(s>0){
+                        line+=" ";
+                        s--;
+                    }
+                    if(exs>0){
+                        line+=" ";
+                        exs--;
+                    }
+                    line+=words[k];
+                }
+            }
+            ans.add(line);
+            i=j;
+        }
+        return ans;
+    }
+}
