@@ -1,0 +1,38 @@
+    public static void main(String args[] ){
+        Scanner sc = new Scanner(System.in);
+        // Read the number of songs in the playlist
+        int n = sc.nextInt();
+
+        // Create an array to store the singers for each song
+        long[] arr = new long[n];
+
+        // Read the singers for each song and store them in the array
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextLong();
+        }
+
+        // Create a HashMap to store the frequency of each singer
+        HashMap<Long, Integer> hm = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            long singer = arr[i];
+            hm.put(singer, hm.getOrDefault(singer, 0) + 1);
+        }
+
+        // Find the maximum frequency
+        int max = 0;
+        for (long singer : hm.keySet()) {
+            max = Math.max(hm.get(singer), max);
+        }
+
+        // Count the number of favorite singers
+        int favoriteSingerCount = 0;
+        for (long singer : hm.keySet()) {
+            if (hm.get(singer) == max) {
+                favoriteSingerCount++;
+            }
+        }
+
+        System.out.println(favoriteSingerCount);
+    }
+
+    }
