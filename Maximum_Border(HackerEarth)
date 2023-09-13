@@ -1,0 +1,80 @@
+//You are given a table with rows and columns. Each cell is colored with white or black. Considering the shapes created by black cells, what is the maximum border of these shapes? Border of a shape means the maximum number of consecutive black cells in any row or column without any white cell in between.
+
+//A shape is a set of connected cells. Two cells are connected if they share an edge. Note that no shape has a hole in it.
+
+//Input format
+
+//The first line contains denoting the number of test cases.
+//The first line of each test case contains integers denoting the number of rows and columns of the matrix. Here, '#' represents a black cell and '.' represents a white cell. 
+//Each of the next lines contains integers.
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt(); // Read the number of test cases
+
+        while (t-- > 0) {
+            int n = sc.nextInt(); // Read the number of rows
+            int m = sc.nextInt(); // Read the number of columns
+            char border[][] = new char[n][m];
+
+            // Read the input characters for the border matrix
+            for (int i = 0; i < n; i++) {
+                String line = sc.next();
+                for (int j = 0; j < m; j++) {
+                    border[i][j] = line.charAt(j);
+                }
+            }
+
+            int max = 0;
+            for (int i = 0; i < n; i++) {
+                int c = 0;
+                for (int j = 0; j < m; j++) {
+                    if (border[i][j] == '#') {
+                        c++;
+                    }
+                }
+                max = Math.max(c, max);
+            }
+            System.out.println(max);
+        }
+    }
+}
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt(); // Read the number of test cases
+
+        while (t-- > 0) {
+            int n = sc.nextInt(); // Read the number of rows
+            int m = sc.nextInt(); // Read the number of columns
+            char border[][] = new char[n][m];
+
+            // Read the input characters for the border matrix
+            for (int i = 0; i < n; i++) {
+                String line = sc.next();
+                for (int j = 0; j < m; j++) {
+                    border[i][j] = line.charAt(j);
+                }
+            }
+
+            int max = 0;
+            for (int i = 0; i < n; i++) {
+                int c = 0;
+                for (int j = 0; j < m; j++) {
+                    if (border[i][j] == '#') {
+                        c++;
+                    }
+                }
+                max = Math.max(c, max);
+            }
+            System.out.println(max);
+        }
+    }
+}
