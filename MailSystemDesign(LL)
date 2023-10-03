@@ -1,0 +1,205 @@
+//Question
+/*Hattori is very much inspired by the way GMAIL works. He decides to build his own simple version of GMAIL. He divides the mails into 3 categories ,namely : UNREAD , READ and TRASH.
+UNREAD:the messages that haven't been read.
+READ:The messages that is read by the user.
+TRASH: The messages deleted by the user.
+Now, At any point of time, The user can READ an UNREAD message , Move an UNREAD message to TRASH , Move a READ message to TRASH or restore a deleted message back to READ category.Now ,
+Hattori requires your help in determining the messages left in all the categories aligned in the order of their arrival in that category.
+Formally: You are given N messages , with ID from 1 to N. Initially all the messages are in the UNREAD section of the mail.Now, Q queries are given in the form as shown below:
+1 X : Move the message with ID X from UNREAD to READ.
+2 X : Move the message with ID X from READ to TRASH.
+3 X : Move the message with ID X from UNREAD to TRASH.
+4 X : Move the message with ID X from TRASH to READ.
+Given that all the queries are valid, Help Hattori in Determining the messages in all the 3 sections. There are N mails initially having id's from 1 to N. 
+Then there are total Q querieseach in the form mentioned in the question. The queries are mentioned in a list query where ith query is represented by (2*i)thand (2*i+1)th value of the list.*/
+
+
+class Solution{
+    static Node insert(Node root,int data){
+        Node newNode = new Node(data);
+        newNode.right=null;
+        if(root==null){
+            root=newNode;
+            return root;
+        }
+        Node temp=root;
+        while(temp.right!=null){
+            temp=temp.right;
+        }
+        temp.right= newNode;
+        return root;
+    }
+    static Node delete(Node root,int data){
+        Node temp=root;
+        Node prev=null;
+        if(temp!=null && temp.data==data){
+            temp=temp.right;
+            return temp;
+        }
+        while(temp!=null && temp.data!=data){
+            prev=temp;
+            temp=temp.right;
+        }
+        prev.right=temp.right;
+        return root;
+        
+    }
+    static List<Node> mailDesign(int N, int Q, int query[]){
+        // code here
+        List<Node> list = new ArrayList<>();
+        Node unread=null;
+        for(int i=0;i<N;i++){
+            unread=insert(unread,i+1);
+        }
+        Node read=null;
+        Node trash=null;
+        for(int i=0;i<2*Q;i+=2){
+            if(query[i]==1 && unread!=null){
+                unread=delete(unread,query[i+1]);
+                read=insert(read,query[i+1]);
+            }
+            if(query[i]==2 && read!=null){
+                read=delete(read,query[i+1]);
+                trash=insert(trash,query[i+1]);
+            }
+            if(query[i]==3 && unread != null){
+                unread=delete(unread,query[i+1]);
+                trash=insert(trash,query[i+1]);
+            }
+            if(query[i]==4 && trash !=null){
+                trash=delete(trash,query[i+1]);
+                read=insert(read,query[i+1]);
+            }
+        }
+        list.add(unread);
+        list.add(read);
+        list.add(trash);
+        return list;
+    }
+}
+class Solution{
+    static Node insert(Node root,int data){
+        Node newNode = new Node(data);
+        newNode.right=null;
+        if(root==null){
+            root=newNode;
+            return root;
+        }
+        Node temp=root;
+        while(temp.right!=null){
+            temp=temp.right;
+        }
+        temp.right= newNode;
+        return root;
+    }
+    static Node delete(Node root,int data){
+        Node temp=root;
+        Node prev=null;
+        if(temp!=null && temp.data==data){
+            temp=temp.right;
+            return temp;
+        }
+        while(temp!=null && temp.data!=data){
+            prev=temp;
+            temp=temp.right;
+        }
+        prev.right=temp.right;
+        return root;
+        
+    }
+    static List<Node> mailDesign(int N, int Q, int query[]){
+        // code here
+        List<Node> list = new ArrayList<>();
+        Node unread=null;
+        for(int i=0;i<N;i++){
+            unread=insert(unread,i+1);
+        }
+        Node read=null;
+        Node trash=null;
+        for(int i=0;i<2*Q;i+=2){
+            if(query[i]==1 && unread!=null){
+                unread=delete(unread,query[i+1]);
+                read=insert(read,query[i+1]);
+            }
+            if(query[i]==2 && read!=null){
+                read=delete(read,query[i+1]);
+                trash=insert(trash,query[i+1]);
+            }
+            if(query[i]==3 && unread != null){
+                unread=delete(unread,query[i+1]);
+                trash=insert(trash,query[i+1]);
+            }
+            if(query[i]==4 && trash !=null){
+                trash=delete(trash,query[i+1]);
+                read=insert(read,query[i+1]);
+            }
+        }
+        list.add(unread);
+        list.add(read);
+        list.add(trash);
+        return list;
+    }
+}
+class Solution{
+    static Node insert(Node root,int data){
+        Node newNode = new Node(data);
+        newNode.right=null;
+        if(root==null){
+            root=newNode;
+            return root;
+        }
+        Node temp=root;
+        while(temp.right!=null){
+            temp=temp.right;
+        }
+        temp.right= newNode;
+        return root;
+    }
+    static Node delete(Node root,int data){
+        Node temp=root;
+        Node prev=null;
+        if(temp!=null && temp.data==data){
+            temp=temp.right;
+            return temp;
+        }
+        while(temp!=null && temp.data!=data){
+            prev=temp;
+            temp=temp.right;
+        }
+        prev.right=temp.right;
+        return root;
+        
+    }
+    static List<Node> mailDesign(int N, int Q, int query[]){
+        // code here
+        List<Node> list = new ArrayList<>();
+        Node unread=null;
+        for(int i=0;i<N;i++){
+            unread=insert(unread,i+1);
+        }
+        Node read=null;
+        Node trash=null;
+        for(int i=0;i<2*Q;i+=2){
+            if(query[i]==1 && unread!=null){
+                unread=delete(unread,query[i+1]);
+                read=insert(read,query[i+1]);
+            }
+            if(query[i]==2 && read!=null){
+                read=delete(read,query[i+1]);
+                trash=insert(trash,query[i+1]);
+            }
+            if(query[i]==3 && unread != null){
+                unread=delete(unread,query[i+1]);
+                trash=insert(trash,query[i+1]);
+            }
+            if(query[i]==4 && trash !=null){
+                trash=delete(trash,query[i+1]);
+                read=insert(read,query[i+1]);
+            }
+        }
+        list.add(unread);
+        list.add(read);
+        list.add(trash);
+        return list;
+    }
+}
