@@ -1,0 +1,56 @@
+/*Given an array arr[] of N elements and a number K. Split the given array into K subarrays such that the maximum subarray sum achievable out of K subarrays formed is minimum possible.
+Find that possible subarray sum.*/
+/*
+//link:https://youtu.be/bcAwHkL7A3A?si=8m-If5hO6vof_7Fv
+//link:https://youtu.be/7DaDnO9Revo?si=ttcTHrz2XoQ3dr_h
+Example 1:
+Input:
+N = 4, K = 3
+arr[] = {1, 2, 3, 4}
+Output: 4
+Explanation:
+Optimal Split is {1, 2}, {3}, {4}.
+Maximum sum of all subarrays is 4,
+which is minimum possible for 3 splits.*/
+
+//SOLUTION
+
+/*class Solution {
+    static int splitArray(int[] arr , int N, int K) {
+        // code here
+        int ts=0;
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<N;i++){
+            ts+=arr[i];
+            max= Math.max(max,arr[i]);
+        }
+        int low=max;
+        int high=ts;
+        int ans=Integer.MAX_VALUE;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(isValid(arr,mid,K)){
+                ans=mid;//we get answer in our specified region and we can search for minimum value
+                high=mid-1;
+            }
+            else{
+                low=mid+1;//if we take samller value of sum then we have to take large value 
+            }
+        }
+        return ans;
+    }
+    static boolean isValid(int arr[],int requiredSum,int K){
+        int sum=0;
+        int count=1;
+        for(int i=0;i<arr.length;i++){
+            if(sum+arr[i]>requiredSum){
+                sum=arr[i];
+                count++;
+            }else{
+                sum+=arr[i];
+            }
+        }
+        return count<=K;
+    }
+};*/
+
