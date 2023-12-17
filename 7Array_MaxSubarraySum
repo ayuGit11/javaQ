@@ -1,0 +1,30 @@
+//Here we are going to find maximum sum continuous array and it is better tha Kadane's algorithm as it can solve if all negative element is present in array.
+class practice{
+   static int MaxSubArray(int arr[]){
+      int currMax=arr[0];
+      int maxSoFar=arr[0];
+      int st=0,s=0;
+      int end=0;
+      for(int i=1;i<arr.length;i++){
+          if(arr[i]>currMax+arr[i]){
+             currMax=arr[i];
+             s=i;
+          }
+          else {
+             currMax=currMax+arr[i];
+          }
+          if(currMax>maxSoFar){
+            maxSoFar=currMax;
+            st=s;
+            end=i;
+          }
+      }
+      System.out.println(st+" "+end);
+      return maxSoFar;
+   }
+
+  public static void main(String args[]) {
+      int arr[] = {-3,-4,-1,-2,3};
+      System.out.println(MaxSubArray(arr));
+  }
+}
