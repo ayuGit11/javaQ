@@ -1,3 +1,7 @@
+/*In each recursive call, the search space is divided in half, which leads to a logarithmic time complexity. The binary search algorithm efficiently reduces
+the search space with each comparison, making it significantly faster than linear search for large datasets. */
+
+
 class practice{
    static int BinarySearch(int i,int j,int arr[],int key) {
       if(i <= j){
