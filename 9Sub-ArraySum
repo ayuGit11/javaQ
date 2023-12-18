@@ -1,0 +1,49 @@
+//find the subarrays whose sum is equal to given sum but this approach wont work for negative values
+class practice{
+  public static void solve(int arr[],int k){
+     int i=0;
+     int j=0;
+     int sum=0;
+     while(j<arr.length){
+        sum+=arr[j];
+        if(sum==k){
+           System.out.println(i+ " "+j);
+        }
+        while(sum>k){
+          sum=sum-arr[i++];
+          if(sum==k){
+            System.out.println(i+ " "+j);
+          }
+        }
+        j++;
+     }
+  }
+  public static void main(String args[]) {
+      int arr[]={6,7,2,4};
+      solve(arr,6);
+  }
+}
+//aproach-2 (Handle all cases)
+import java.util.*;
+class practice{
+  public static void solve(int arr[],int k){
+     HashMap<Integer,Integer> hm = new HashMap<>();
+     int sum=0;
+     for(int i=0;i<arr.length;i++){
+        sum+=arr[i];
+        if(sum==k){
+          System.out.println(0+" "+i);
+        }
+        if(hm.containsKey(sum-k)){
+          System.out.println(hm.get(sum-k)+1 +" "+i);
+        }
+        else{
+          hm.put(sum,i);
+        }
+     }
+  }
+  public static void main(String args[]) {
+      int arr[]={6,7,2,4};
+      solve(arr,6);
+  }
+}
