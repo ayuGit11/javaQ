@@ -1,4 +1,12 @@
 //Here we are going to find maximum sum continuous array and it is better tha Kadane's algorithm as it can solve if all negative element is present in array.
+//Initially let say currMax and maxSoFar = arr[0], and we have two pointer st and s initially at 0.
+//we traverse from index position 1 and check if element at that index is greater than the currMax+arr[i] the update the currMax as aar[i] and move the pointer 
+//s to i (s tells us the index position from where maximum taken)  else    currMax=currMax+arr[i];  and also if currMax is greater than the maxSoFar then 
+//update maxSofar and move to pointer st to that index and update the end also;
+
+//In Kadane's we iterate it and if we get the sum less than 0 then update the sum=0 and continue else we add next element to it.
+//It gives with indexes also
+
 class practice{
    static int MaxSubArray(int arr[]){
       int currMax=arr[0];
@@ -28,3 +36,44 @@ class practice{
       System.out.println(MaxSubArray(arr));
   }
 }
+
+//Another Approach
+
+class practice {
+
+  public static int findLargestSubarraySum(int[] arr) {
+    if (arr.length == 0) {
+      System.out.println("Array is empty");
+      return -1;
+    }
+
+    boolean ifPositiveExists = false;
+    int max_element = Integer.MIN_VALUE;
+    int max_sum = Integer.MIN_VALUE;
+    int sum = 0;
+
+    for (int i = 0; i < arr.length; i++) {
+      if(arr[i] >= 0) {
+        ifPositiveExists = true;
+      }
+      
+      max_element = Math.max(arr[i], max_element);
+      sum = sum + arr[i];
+
+      if (sum < 0) {
+        sum = 0;
+        continue;
+      }
+
+      max_sum = Math.max(max_sum, sum);
+    }
+    
+    return ifPositiveExists ? max_sum : max_element;
+  }
+
+  public static void main(String[] args) {
+    int arr[] = { -3, 2, -7, 6, -2, 4, -8, 5};
+    System.out.println(findLargestSubarraySum(arr));
+  }
+}
+
