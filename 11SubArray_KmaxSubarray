@@ -1,0 +1,30 @@
+import java.util.*;
+class practice{
+   static ArrayList<Integer> KMaxSubArray(int arr[],int k){
+       ArrayList<Integer> al=new ArrayList<>();
+       Deque<Integer> dq = new LinkedList<>();
+       for(int i=0;i<k;i++){
+           while (!dq.isEmpty() && arr[i]>=arr[dq.peekLast()]){
+              dq.removeLast();
+           }
+           dq.addLast(i);
+       }
+       for(int i=k;i<arr.length;i++){
+          al.add(arr[dq.peek()]);
+          while (!dq.isEmpty() && i-k>=dq.peek()){
+              dq.removeFirst();
+           }
+          while (!dq.isEmpty() && arr[i]>=arr[dq.peekLast()]){
+              dq.removeLast();
+           }
+           dq.addLast(i);
+       }
+       al.add(arr[dq.peek()]);
+       return al;
+   }
+
+  public static void main(String args[]) {
+      int arr[] ={ -3, 2, -7, 6, -2, 4, -8, 5};
+      System.out.println(KMaxSubArray(arr,3));
+  }
+}
