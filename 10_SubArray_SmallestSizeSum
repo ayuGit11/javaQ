@@ -1,0 +1,27 @@
+//it is similar like finding particular sum of subarray. Here we need smallest size of subarray whose sum equal to the given sum so we will use HashMap to keep track of total sum and its corresponding index
+//and then finding is there sum-k is present in that map or not and then finding smallest one by compairing it.
+import java.util.*;
+class practice{
+  public static void solve(int arr[],int k){
+    int smallest=Integer.MAX_VALUE;
+    int j=0;
+    HashMap<Integer,Integer> hm = new HashMap<>();
+    int sum=0;
+    while(j<arr.length){
+        sum+=arr[j];
+        if(sum==k){
+          smallest=Math.min(smallest,j+1);
+        }
+        if(hm.containsKey(sum-k)){
+          smallest=Math.min(smallest,j-hm.get(sum-k));
+        }
+        hm.put(sum,j);
+        j++;
+    }
+    System.out.println(smallest);
+  }
+  public static void main(String args[]) {
+      int arr[]={8,7,-2,4,5};
+      solve(arr,2);
+  }
+}
