@@ -1,0 +1,27 @@
+//In this code we are finding all possible subarray whose mulltiplication is less than the given k 
+import java.util.*;
+class practice{
+   static ArrayList<List<Integer>> multiSubArray(int arr[],int k){
+      ArrayList<List<Integer>> al = new ArrayList<>();  
+      int mul=1;
+      int st=0,i=0;
+      while(i<arr.length){
+         mul=arr[i]*mul;
+         while(mul>=k){
+            mul = mul/arr[st];
+            st++;
+         }
+         List<Integer> li = new ArrayList<>();
+         for(int j=i;j>=st;j--){
+            li.add(0,arr[j]);
+            al.add(new ArrayList<>(li));
+         }
+         i++;
+      }
+      return al;
+   }
+  public static void main(String args[]) {
+      int arr[] ={ 4,2,5,3,6};
+      System.out.println(multiSubArray(arr,45));
+  }
+}
