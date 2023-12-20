@@ -1,0 +1,56 @@
+//Here we are finding that whether the array is circular or not same using the concept of slow and fast pointer to find cycle in linked list.
+/*- We'll take two variable slow & fast
+- Here each value represent the jump it'll make. Positive means forward direction & negative means backward direction
+- Slow will move by 1 position & fast will move by 2 position. If slow & fast meet at any index, then it means cycle is possible. 
+- We'll iterate for each point & if at any case, it's not possible, then we check for next index. 
+- If we don't find cycle, then we return false*/
+
+
+class practice{
+   static boolean isCycle(int arr[]){
+      if(arr.length<=1){
+        return false;
+      }
+      for(int i=0;i<arr.length;i++){
+        int slow=i;
+        int fast=i;
+        boolean isForward=arr[i]>0;
+        while(true){
+            slow=getNextPos(arr,slow,isForward);
+            if(slow==-1){
+                break;
+            }
+            fast=getNextPos(arr, fast, isForward);
+            if(fast==-1){
+                break;
+            }
+            fast=getNextPos(arr, fast, isForward);
+            if(fast==-1){
+                break;
+            }
+            if(slow==fast){
+                return true;
+            }
+        }
+      }
+      return false;
+   }
+   public static int getNextPos(int arr[],int idx,boolean isForward){
+       boolean direction = arr[idx]>=0;
+       if(direction!=isForward){//agr bot +ve & -ve movement
+        return -1;
+       }
+       int nextIdx = (idx+arr[idx])%arr.length;
+       if(nextIdx<0){
+        nextIdx = nextIdx+arr.length;
+       }
+       if(nextIdx==idx){//agr ek hi step me circular ho gya
+        return -1;
+       }
+       return nextIdx;
+   }
+  public static void main(String args[]) {
+      int arr[] ={2,-1,1,-2,-1};
+      System.out.println(isCycle(arr));
+  }
+}
