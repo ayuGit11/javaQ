@@ -1,0 +1,48 @@
+//here we need to find the size of an subarray which need to be sort so that the whole will sort .
+/*-We take two variable start = 0 & end = a.length - 1
+- Now iterate start until you get increasing value & & decrease end until you get previous value is lesser than current value
+- Once you get start & end, get max & min between start & end
+- Now you keep on going from 'start' to 0th index & check if value is lesser than min then it'll be part of sorting
+- Same way you check 'end' to last index that if value if lesser than max then this will be part of subarray.
+- At last, you return end - start -1 */
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+class practice{
+   static int sizeSubArraySort(int arr[]){
+      int start=0;
+      int n=arr.length-1;
+      int end=n;
+      while(start<n && arr[start]<arr[start+1]){
+        start++;
+      }
+      if(start==n){
+        return 0;
+      }
+      while(end>0 && arr[end]>arr[end-1]){
+        end--;
+      }
+      if(end==0){
+         return 0;
+      }
+      int min=Integer.MAX_VALUE;
+      int max=Integer.MIN_VALUE;
+      for(int i=start+1;i<end;i++){
+        min=Math.min(arr[i],min);
+        max= Math.max(arr[i],max);
+      }
+      System.out.println(start+" "+end);
+      while(start>=0 && min<arr[start]){ 
+         start--; 
+      }
+      while(end<n && max>arr[end]){
+        end++;
+      }
+      System.out.println(start+" "+end);
+      return end-start-1;
+   }
+  public static void main(String args[]) {
+      int arr[] ={ 1,2,5,3,0,12,13,8,15,18};
+      System.out.println(sizeSubArraySort(arr));
+  }
+}
