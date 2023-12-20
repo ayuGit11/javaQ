@@ -1,0 +1,41 @@
+//In these code we need to find the missing number and also the repeating number in place of missing number.
+/*- We'll start from 0th index & iterate all elements of all array
+- If we array value is not arr[arr[i] - 1], then we need to swap the value, So we get the index value & put this value to it's correct index 
+- If it's not the case, then we move to next index. 
+- Now once we've sort the values, missing number will be index + 1 & duplicate value will be value present at this index.*/
+import java.util.*;
+class ArrayApp {
+ public static List<Integer> findCurruptPair(int[] arr) {
+    if(arr.length == 0) {
+      return new ArrayList<>();
+    }
+    
+    int i = 0;
+    while(i < arr.length) {
+      if(arr[i] != arr[arr[i] - 1]) {
+        int otherIndex = arr[i] - 1;
+        
+        int x = arr[i];
+        arr[i] = arr[otherIndex];
+        arr[otherIndex] = x;
+      } else {
+        i++;
+      }
+    }
+    
+    for(i = 0; i < arr.length; i++) {
+      if(arr[i] != i + 1) {
+        return new ArrayList<>(Arrays.asList(i+1, arr[i]));
+      }
+    }
+    
+    return new ArrayList<>();
+  }
+  
+  public static void main(String[] args) {
+    int[] arr = {4, 3, 4, 5, 1};
+
+    System.out.println(ArrayApp.findCurruptPair(arr));
+  }
+
+}
