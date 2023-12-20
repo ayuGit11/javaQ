@@ -57,3 +57,42 @@ class practice{
       System.out.println(KMaxSubArray(arr,3));
   }
 }
+
+//Here we need to find the closest sum of the given sum
+
+import java.util.*;
+class practice{
+   static int KMaxSubArray(int arr[],int k){
+       Arrays.sort(arr);
+       int minDiff = Integer.MAX_VALUE;
+       int closestSum = Integer.MAX_VALUE;
+       int tripletCount=0;
+       for(int i=0;i<arr.length-2;i++){
+          int start=i+1;
+          int end=arr.length-1;
+          while(start<end){
+            int t=arr[i]+arr[start]+arr[end];
+            if(Math.abs(k-t)<=minDiff && t<closestSum){
+                minDiff = Math.abs(k-t);
+                closestSum = t;
+             }
+             if(t==k){
+                return t;
+             }
+            else if(t<k){
+                start++;
+            }else{
+                end--;
+            }
+          }
+        }
+       return closestSum;
+   }
+
+  public static void main(String args[]) {
+      int arr[] ={ 3, 2, -7, 6, -2, 4, -1};
+      System.out.println(KMaxSubArray(arr,3));
+  }
+}
+
+
