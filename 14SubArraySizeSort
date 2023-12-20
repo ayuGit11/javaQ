@@ -1,6 +1,6 @@
 //here we need to find the size of an subarray which need to be sort so that the whole will sort .
-/*-We take two variable start = 0 & end = a.length - 1
-- Now iterate start until you get increasing value & & decrease end until you get previous value is lesser than current value
+/*-We take two variable start = 0 & end = arr.length - 1
+- Now iterate start until you get increasing value && decrease end until you get previous value is lesser than current value
 - Once you get start & end, get max & min between start & end
 - Now you keep on going from 'start' to 0th index & check if value is lesser than min then it'll be part of sorting
 - Same way you check 'end' to last index that if value if lesser than max then this will be part of subarray.
