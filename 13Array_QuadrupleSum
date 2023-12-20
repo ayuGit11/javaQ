@@ -1,0 +1,32 @@
+//here we have to quadruple whose sum is equivalent to the sum given i.e k  
+import java.util.*;
+class practice{
+   static ArrayList<List<Integer>> KMaxSubArray(int arr[],int k){
+       ArrayList<List<Integer>> al=new ArrayList<>();
+       for(int i=0;i<arr.length-3;i++){
+         for(int j=i+1;j<arr.length-2;j++){
+          int sum=k-(arr[i]+arr[j]);
+          int start=j+1;
+          int end=arr.length-1;
+          while(start<end){
+            int t=arr[start]+arr[end];
+            if(t==sum){
+                al.add(Arrays.asList(arr[i],arr[j],arr[start],arr[end]));
+                start++;
+                end--;
+            }else if(t<sum){
+                start++;
+            }else{
+                end--;
+            }
+          }
+        }
+      }
+       return al;
+   }
+
+  public static void main(String args[]) {
+      int arr[] ={ 3, 2, -7, 6, -2, 4, -1};
+      System.out.println(KMaxSubArray(arr,3));
+  }
+}
