@@ -1,0 +1,32 @@
+//In this we are given k that is tell us that we can replace k numbers of zeros with 1 and we need find the maximum length of an such subarray.
+class practice{ 
+  public static int MaxSubarrayWith1(int arr[],int k){
+     int st=0,i=0;
+     int nZ=0;
+     int maxS=0;
+     int sti=0,endi=0;
+     while(i<arr.length){
+        if(arr[i]==0){
+            nZ++; //increase number of zeros
+        }
+        while(nZ>k){
+           if(arr[st]==0){
+             nZ--; //decrease number of zeros
+           }
+           st++;
+        }
+        if(i-st+1>maxS){ //if current size is greater than update maxS i.e. maximum Size
+            maxS=i-st+1;
+            sti=st;
+            endi=i;
+        }
+        i++;
+     }
+     System.out.println(sti+" "+endi);
+     return maxS;
+  }
+  public static void main(String args[]) {
+      int arr[] ={1,0,1,1,0,1,0,0,1,0};
+      System.out.println(MaxSubarrayWith1(arr,2));
+  }
+}
