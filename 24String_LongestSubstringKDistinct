@@ -1,0 +1,29 @@
+import java.util.*;
+class practice {
+    public static int helper(String str,int k){
+        int st=0,end=0;
+        HashMap<Character,Integer> hm = new HashMap<>();
+        int maxLength=0;
+        
+        while(end<str.length()){
+            hm.put(str.charAt(end),hm.getOrDefault(str.charAt(end),0)+1);
+            System.out.println(hm);
+            while(hm.size()>k){
+                char ch=str.charAt(st);
+                hm.put(ch,hm.get(ch)-1);
+                if(hm.get(ch)==0){
+                    hm.remove(ch);
+                } 
+                st++;
+            }
+            maxLength=Math.max(maxLength,end-st+1);
+            end++;
+        }
+        return maxLength;
+    }
+    public static void main(String[] args) {
+        String str="abbccaacba";
+        System.out.println(helper(str,2));
+        
+    }
+}
