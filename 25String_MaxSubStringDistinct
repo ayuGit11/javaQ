@@ -1,0 +1,35 @@
+//In this code we need to find maximum substring which contains distinct character
+/*- We take a Map, which'll give me info about unique characters present, Map key will be character & value will be the last position of that character
+- We'll take a max_length variable, where we'll store the solution
+- we'll take two variable start & end, which'll be the window of substring with no repeating characters. At starting, both start & end will be at zero
+- Now we iterate the string & check if character already present in map then my next window will be from the next character of that character so we get the index point 'start' to that index + 1
+- max_length will be updated by end - start + 1
+- At last we return, max_length as answer
+
+Time Complexity: O(n)
+Space Complexity: O(n) */
+
+
+import java.util.*;
+class practice {
+    public static int helper(String str){
+        int st=0,end=0;
+        HashMap<Character,Integer> hm = new HashMap<>();
+        int maxLength=0;
+        while(end<str.length()){ 
+            char ch = str.charAt(end);
+            if(hm.containsKey(ch)){
+                st=Math.max(st,hm.get(ch)+1);//so that we get st within a window
+            }
+            hm.put(ch,end);
+            maxLength=Math.max(maxLength,end-st+1);
+            end++;
+        }
+        return maxLength;
+    }
+    public static void main(String[] args) {
+        String str="abbecadecba";
+        System.out.println(helper(str));
+        
+    }
+}
