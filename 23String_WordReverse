@@ -1,0 +1,49 @@
+/*In this queston we need to reverse a individual word in the given string 
+for input str="Welcome to corporate world Ayushi!"  
+    output    "emocleW ot etaroproc dlrow !ihsuyA"
+- We take two string: s & word,word help in reversing individual words & s will be the final string that we'll return as answer 
+- We iterate the complete string from 0th index till end
+- While iteration, whereever we find the non-space character, we keep on adding character in word & whenever we find the space, we append word in s.
+
+
+Time Complexity: O(n)
+Space Complexity: O(1) */
+
+class practice {
+    public static void main(String[] args) {
+        String str="Welcome to corporate world Ayushi!";
+        String word="";
+        String s="";
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)==' '){
+               s=s+word+" ";
+               word="";
+            }else{
+               word=str.charAt(i)+word;
+            }
+        }
+        s=s+word;
+        System.out.println(s);
+    }
+}
+
+//we can further optimize it by taking stringBuilder instead of string;
+
+class practice {
+    public static void main(String[] args) {
+        String str="Welcome to corporate world Ayushi!";
+        StringBuilder word=new StringBuilder("");
+        StringBuilder s=new StringBuilder("");
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)==' '){
+               s=s.append(word).append(" ");
+               word.setLength(0);
+            }else{
+               word.insert(0,str.charAt(i));
+            }
+        }
+        s=s.append(word);
+        System.out.println(s);
+    }
+}
+
