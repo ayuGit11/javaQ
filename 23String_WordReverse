@@ -28,6 +28,7 @@ class practice {
 }
 
 //we can further optimize it by taking stringBuilder instead of string;
+we can take stringBuffer also the only difference is stringBuffer is thread safe and stringBuilder is not thread safe.
 
 class practice {
     public static void main(String[] args) {
