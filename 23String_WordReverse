@@ -48,3 +48,25 @@ class practice {
     }
 }
 
+//In these question we need just reverse word in given string
+//str="Welcome to corporate world Ayushi!" then output will be "Ayushi! world corporate to Welcome".
+
+class practice {
+    public static void main(String[] args) {
+        String str="Welcome to corporate world Ayushi!";
+        StringBuilder word=new StringBuilder("");
+        StringBuilder s=new StringBuilder("");
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i)==' '){
+               s.insert(0,word.append(" "));
+               word.setLength(0);
+            }else{
+               word=word.append(str.charAt(i));
+            }
+        }
+        s=s.insert(0,word.append(" "));
+        System.out.println(s);
+    }
+}
+
+
