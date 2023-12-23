@@ -1,0 +1,47 @@
+//In this question we need to find that is string s2 or its anagram is present in s1 or not
+/*- We create a map of frequency of characters present in pattern
+- Now we start from 1st index & if that character present in map, then we decrease the frequency by 1 & we check if the frequency now becomes 0, then we increase the matchedElement variable by 1
+- If matchedElement becomes equal to size of map or unique characters in pattern then we've found our anagram & we return true
+- Now if any element is moving out of window, we check if it's part of map, then increase the frequency by 1 & if the frequency is 0 then decrease the matchedElement by 1
+- At last, if there's no match found, then we return false */
+
+
+import java.util.*;
+class practice {
+    public static boolean helper(String s1,String s2){
+        HashMap<Character,Integer> hm = new HashMap<>();
+        for(int i=0;i<s2.length();i++){
+            hm.put(s2.charAt(i),hm.getOrDefault(s2.charAt(i), 0)+1);
+        }
+        int st=0;
+        int matchedElement=0;
+        for(int i=0;i<s1.length();i++){
+            char ch=s1.charAt(i);
+            if(hm.containsKey(ch)){
+                hm.put(ch,hm.get(ch)-1);
+                if(hm.get(ch)==0){
+                    matchedElement++;
+                }
+            }
+            if(matchedElement==hm.size()){
+                return true;
+            }
+            if(i>=s2.length()-1){
+               char c=s1.charAt(st++);
+               if(hm.containsKey(c)){
+                if(hm.get(c)==0){
+                    matchedElement--;
+                }
+                hm.put(c,hm.get(c)+1);
+               }
+            }
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        String s1="bcdabe";
+        String s2="dab";
+        System.out.println(helper(s1,s2));
+        
+    }
+}
