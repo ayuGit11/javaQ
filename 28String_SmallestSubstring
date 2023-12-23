@@ -1,0 +1,56 @@
+//In this question we are given a string s2 and we have to find smallest substring which contain these s2.
+/*We create a map of frequency of characters present in pattern
+- Now we start from 1st index & if that character present in map, then we decrease the frequency by 1 & we check if the frequency is greater than 0, then we increase the matchedElement variable by 1
+- If matchedElement becomes equal to size of pattern then we've found our anagram & we store minimum length & starting point at this moment
+- Now we increase start & go until matchedElement is equal to pattern size. At every moment we update the starting point & min length if end - start + 1 is less than minLength
+- Now if any element is moving out of window, we check if it's part of map, then increase the frequency by 1 & if the frequency is 0 then decrease the matchedElement by 1
+- At last, we return substring starting from subStringStartIndex to subStringStartIndex + minLength
+
+Time Complexity: O(n + m)
+Space Complexity: O(m) */
+
+
+import java.util.*;
+class practice {
+    public static String helper(String s1,String s2){
+        HashMap<Character,Integer> hm = new HashMap<>();
+        for(int i=0;i<s2.length();i++){
+            hm.put(s2.charAt(i),hm.getOrDefault(s2.charAt(i), 0)+1);
+        }
+        int st=0,minStart=0;
+        int matchedElement=0;
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<s1.length();i++){
+            char ch=s1.charAt(i);
+            if(hm.containsKey(ch)){
+                hm.put(ch,hm.get(ch)-1);
+                if(hm.get(ch)>=0){
+                    matchedElement++;
+                }
+            }
+            while(matchedElement==hm.size()){
+                if(i-st+1<min){//Is current substring length is minimum 
+                    min=i-st+1;
+                    minStart=st;
+                }
+            char c=s1.charAt(st++);
+            if(hm.containsKey(c)){
+              if(hm.get(c)==0){
+                matchedElement--;
+              }
+              hm.put(c,hm.get(c)+1);
+             }
+            }
+        }
+        if(minStart>s1.length()){
+            return "";
+        }
+        return s1.substring(minStart,minStart+min);
+    }
+    public static void main(String[] args) {
+        String s1="daaebcdabe";
+        String s2="dab";
+        System.out.println(helper(s1,s2));
+        
+    }
+}
