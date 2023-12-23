@@ -1,0 +1,52 @@
+//In this question we are given with 2 strings it consist of character '#' which represent backspace and after performing backspace in both the the strings then we need to compare both the strings are qual or not.
+// We start from end for both the string & find out the valid characters
+//- We do this for all characters. At any moment if we get not matching characters, we return false, else we return true in last.
+
+//Time Complexity: O(n+m)
+//Space Complexity: O(1)
+
+
+class practice {
+    public static boolean helper(String s1,String s2){
+        int end1=s1.length()-1;
+        int end2=s2.length()-1;
+        while(end1>=0 && end2>=0){
+            int s1Index=getChar(s1,end1); //it will tell us the index after performing backspace
+            int s2Index=getChar(s2,end2);
+            if(s1Index<0 && s2Index<0){
+                return true;
+            }
+            if(s1Index<0 || s2Index<0){
+                return false;
+            }
+            if(s1.charAt(s1Index)!=s2.charAt(s2Index)){
+                return false;
+            }
+            end1=s1Index-1;
+            end2=s2Index-1;
+        }
+        return true;
+    }
+    public static int getChar(String s,int end){
+        int sc=0;
+        while(end>=0){
+            if(s.charAt(end)!='#'){
+               if(sc==0){
+                  return end;
+               }else{
+                  sc--;
+               }
+            }else{
+                sc++;
+            }
+            end--;
+        }
+        return end;
+    }
+    public static void main(String[] args) {
+        String s1="bcd##e";
+        String s2="bd#e";
+        System.out.println(helper(s1,s2));
+        
+    }
+}
