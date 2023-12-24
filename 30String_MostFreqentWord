@@ -1,0 +1,46 @@
+//In this code we are finding most frequent words in a given String sorted in alphabetic order and its frequency.
+/*- Replace all punctuations with space by using (str.replaceAll("[^a-zA-Z0-9]"," ");)
+- Split string to string array by one or more space  ( String words[]=str.split(" +");)
+- Create frequency map of each word 
+- Remove exluding word from frequency map
+- Now create TreeMap with comparator based on decresing frequency & alphabetically
+- Put all values in TreeMap which'll arrange in decresing frequency & alphabetically (If frequency is same then alphabetically)
+- Get most frequency value
+- Put all word from map one by which has frequency equal to most frequency.
+- Return this final list*/
+
+
+import java.util.*;
+class practice{
+    public static List<String> countMaxFWord(String str){
+        str=str.replaceAll("[^a-zA-Z0-9]"," ");
+        HashMap<String,Integer> hm = new HashMap<>();
+        String words[]=str.split(" +");
+        for(String word:words){
+            word.toLowerCase();
+            hm.put(word,hm.getOrDefault(word,0)+1);
+        }
+        TreeMap<String,Integer> tm = new TreeMap<>((a,b)->{
+            int freq1=hm.get(a);
+            int freq2=hm.get(b);
+            if(freq1!=freq2){
+                return freq2-freq1;
+            }else{
+            return a.compareTo(b);
+            }
+        });
+        tm.putAll(hm);//putting the hashmap to treeMap so that it can sort it
+        List<String> mostFreqWord= new ArrayList<>();
+        int topFreq=tm.firstEntry().getValue();
+        for(String w:tm.keySet()){
+            if(tm.get(w)==topFreq){
+                mostFreqWord.add(w);
+            }
+        }
+        return mostFreqWord;
+    }
+    public static void main(String args[]){
+        String str="How are you? Doing well or not?you are my hero";
+        System.out.println(countMaxFWord(str));
+    }
+}
