@@ -9,6 +9,11 @@
 - Put all word from map one by which has frequency equal to most frequency.
 - Return this final list*/
 
+/*str="How are you? Doing well or not?you are my hero"
+tm={are=2, you=2, Doing=1, How=1, hero=1, my=1, not=1, or=1, well=1}
+mostFrequentWords=[are, you]*/
+
+
 
 import java.util.*;
 class practice{
