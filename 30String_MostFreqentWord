@@ -30,9 +30,8 @@ class practice{
             int freq2=hm.get(b);
             if(freq1!=freq2){
                 return freq2-freq1;
-            }else{
-            return a.compareTo(b);
             }
+            return a.compareTo(b);
         });
         tm.putAll(hm);//putting the hashmap to treeMap so that it can sort it
         List<String> mostFreqWord= new ArrayList<>();
