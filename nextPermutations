@@ -1,5 +1,6 @@
-//reverse function to reverse an array
-public static int[] reverse(int left,int right,int nums[]){
+class Solution {
+    //reverse function to reverse an array
+   public static int[] reverse(int left,int right,int nums[]){
        while (left < right) {
             int temp = nums[left];
             nums[left++] = nums[right];
@@ -10,31 +11,22 @@ public static int[] reverse(int left,int right,int nums[]){
 //finding next possible permutation 
     public void nextPermutation(int[] nums) {
         int n=nums.length;
-        int idx=-1;
-      //last element of an array start krege aur dekehege ki mere se pehle koi element chhota aaya h kya agr mil jaega toh loop se bahar nikal jaege
-        for(int i=n-1;i>0;i--){
-            if(nums[i]>nums[i-1]){
-                idx=i;
-                break;
+        if(n<=1){
+           return;
+         }
+       int i = n-2;
+       while(i>=0  && nums[i]>=nums[i+1]){//last se pehle chhota element
+           i--;
+         }
+       if(i>=0){  // i is for last se chhota element 
+            int j = nums.length-1;
+            while(nums[j]<=nums[i]){ //j is the index of i se bada element ka index
+               j--;
             }
+            int temp = nums[i];
+            nums[i]=nums[j];
+            nums[j]=temp;
         }
-        //idx is the index position where its previous(idx-1) pe chhota element hai
-        //idx==-1 ka mtlb element already sorted in descending order
-        if(idx==-1){
-            reverse(0,n-1,nums);
-            return;
-        }
-        else{
-          int prev=idx;
-          for(int i=idx+1;i<n;i++){ // yha se dekhege ki idx se bhi bada nearest element milega kya agr milega toh ush nearest ko prev me store krwa lege
-              if(nums[i]>nums[idx-1] && nums[i]<=nums[prev]){
-                  prev=i;
-              }
-          }
-          // prev element se swap krege aur phir usko reverse kr dege
-          int temp=nums[idx-1];
-          nums[idx-1]=nums[prev];
-          nums[prev]=temp;
-          reverse(idx,n-1,nums);
-        }
+      reverse(i+1,nums.length-1,nums);
     }
+}
